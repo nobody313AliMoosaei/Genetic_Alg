@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice_2_Artificial_Intelligence", "Practice_2_Artificial_Intelligence\Practice_2_Artificial_Intelligence.csproj", "{37239C45-0388-4A49-B89E-233AAF0B0D75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37239C45-0388-4A49-B89E-233AAF0B0D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37239C45-0388-4A49-B89E-233AAF0B0D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37239C45-0388-4A49-B89E-233AAF0B0D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37239C45-0388-4A49-B89E-233AAF0B0D75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85E56F9E-BAB5-45CD-8F8A-B53C98E2117E}
+	EndGlobalSection
+EndGlobal
