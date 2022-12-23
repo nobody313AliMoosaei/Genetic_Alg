@@ -1,6 +1,7 @@
 ﻿using Practice_2_Artificial_Intelligence.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -42,6 +43,8 @@ namespace Practice_2_Artificial_Intelligence
             }
             Create_Population(Population);
             int Counter = 0;
+            var StopWatch = new Stopwatch();
+            StopWatch.Start();
             while (true)
             {
                 Counter++;
@@ -59,17 +62,22 @@ namespace Practice_2_Artificial_Intelligence
                 Chance_Percent = SetChance_Percent(Chance_Chromosome(Population));
 
                 List<int> order = Select_Chromosome(Chance_Percent).Result;
+                List<int[]> MatrixTemp = Matrix;
                 for (int i = 0; i < order.Count; i++)
                 {
-                    Matrix[i] = Matrix[order[i]];
+                    Matrix[i] = MatrixTemp[order[i]];
                 }
                 //Excute Cross Over
                 CrossOver(Population);
 
                 // Mutation
                 Mutation(Population);
+                if (StopWatch.Elapsed > TimeSpan.FromMinutes(2))
+                {
+                    break;
+                }
             }
-
+            StopWatch.Stop();
             ShowFunction(Population, Counter);
             Console.ReadKey();
         }
@@ -169,7 +177,7 @@ namespace Practice_2_Artificial_Intelligence
                     Sum2 += Chance_Percent[j];
                     if (Random_Number >= Sum1 && Random_Number <= Sum2)
                     {
-                        Order_Chromosome.Add(i);
+                        Order_Chromosome.Add(j);
                         break;
                     }
                 }
@@ -183,10 +191,10 @@ namespace Practice_2_Artificial_Intelligence
         {
             Random random = new Random();
             int CrossOver_point = random.Next(0, 1);
-            await System.Threading.Tasks.Task.Delay(100);
+            //await System.Threading.Tasks.Task.Delay(10);
             int Random_Number1 = random.Next(0, Population - 1); 
             int Random_Number2;
-            await System.Threading.Tasks.Task.Delay(100);
+            //await System.Threading.Tasks.Task.Delay(100);
             while (true)
             {
                 Random_Number2 = random.Next(0, Population - 1);
@@ -230,7 +238,7 @@ namespace Practice_2_Artificial_Intelligence
 
                 if (Indext_Chromosome == 2)
                 {
-                    var t = random.Next(-100, 100);
+                    int t = random.Next(-100, 100);
                     if (t == Matrix[Random_Chromosome][Indext_Chromosome])
                     {
                         i--;
@@ -240,13 +248,15 @@ namespace Practice_2_Artificial_Intelligence
                 }
                 else
                 {
-                    var t = random.Next(-20, 20);
+                    int t = random.Next(-20, 20);
                     if (t == Matrix[Random_Chromosome][Indext_Chromosome])
                     {
                         i--;
                         continue;
                     }
-                    Matrix[Random_Chromosome][Indext_Chromosome] = t;
+                    var TempChromosom = Matrix[Random_Chromosome];
+                    TempChromosom[Indext_Chromosome] = t;
+                    Matrix[Random_Chromosome] = TempChromosom;
                 }
                 await System.Threading.Tasks.Task.Delay(100);
             }
@@ -294,6 +304,9 @@ namespace Practice_2_Artificial_Intelligence
                     }
                     Console.WriteLine("Error = " + SumBrazesh[i]);
 
+                }else
+                {
+                    Console.WriteLine("Not Found Renge [-50 , +50]");
                 }
             }
 
